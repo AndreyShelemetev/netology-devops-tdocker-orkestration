@@ -69,6 +69,12 @@ cat > $PROJECT_DIR/roles/docker/tasks/main.yml <<EOL
     state: latest
     update_cache: yes
   notify: Restart Docker
+
+- name: Install Docker Compose Plugin
+  apt:
+    name: docker-compose-plugin
+    state: latest
+    update_cache: yes
 EOL
 
 # ===== ROLE: handlers/main.yml =====
@@ -86,6 +92,6 @@ cat > $PROJECT_DIR/roles/docker/defaults/main.yml <<EOL
 docker_version: "latest"
 EOL
 
-echo "Структура Ansible создана в $PROJECT_DIR"
+echo "Структура Ansible создана в $PROJECT_DIR с ролью docker и установкой Docker Compose Plugin"
 echo "Теперь можно запустить плейбук:"
 echo "cd $PROJECT_DIR && ansible-playbook playbooks/install_docker.yml"
